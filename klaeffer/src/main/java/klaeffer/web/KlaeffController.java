@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import klaeffer.service.Klaeff;
 import klaeffer.service.KlaeffPage;
 import klaeffer.service.KlaeffService;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class KlaeffController {
 
   @GetMapping("/")
   public String index(Model model,
+                      OAuth2AuthenticationToken auth,
                       @RequestParam(name = "page", required = false, defaultValue = "1")
                       int page,
                       @RequestParam(name = "max", required = false, defaultValue = "10")
@@ -37,6 +39,7 @@ public class KlaeffController {
     model.addAttribute("klaeffpage", list);
     model.addAttribute("page", page);
     model.addAttribute("max", max);
+    model.addAttribute("loginname",auth.getPrincipal().getAttribute("login"));
     return "main";
   }
 
