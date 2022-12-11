@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import klaeffer.service.Klaeff;
 import klaeffer.service.KlaeffPage;
 import klaeffer.service.KlaeffService;
+import klaeffer.service.ProfilService;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,5 +52,13 @@ public class KlaeffController {
     return "redirect:/";
   }
 
+  @GetMapping("/profil")
+  public String profilAnzeigen(OAuth2AuthenticationToken auth, Model model){
+    ProfilService profilService = new ProfilService(auth);
+    model.addAttribute("name", profilService.getName());
+    model.addAttribute("profilBild", auth.getPrincipal().getAttribute("avatar_url"));
+    model.addAttribute("githubProfilSeite",auth.getPrincipal().getAttribute("html_url"));
 
+    return "profil";
+  }
 }

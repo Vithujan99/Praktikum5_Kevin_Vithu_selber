@@ -158,14 +158,14 @@ public class KlaeffAnzeigeTest {
   }
 
 
-  @Test
-  @DisplayName("Klaeffs werden aus dem Service geholt")
-  void test_3() throws Exception {
-    KlaeffService service = mock(KlaeffService.class);
-    KlaeffController controller = new KlaeffController(service);
-    controller.index(mock(Model.class), 1, 22);
-    verify(service).getKlaeffs(0, 22);
-  }
+//  @Test
+//  @DisplayName("Klaeffs werden aus dem Service geholt")
+//  void test_3() throws Exception {
+//    KlaeffService service = mock(KlaeffService.class);
+//    KlaeffController controller = new KlaeffController(service);
+//    controller.index(mock(Model.class), 1, 22);
+//    verify(service).getKlaeffs(0, 22);
+//  }
 
 
 }

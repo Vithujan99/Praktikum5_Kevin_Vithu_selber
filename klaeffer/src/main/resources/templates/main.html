@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Kläffer</h1>
-<h2>von <span th:text="${loginname}"></span></h2>
+<h2>von <a href="/profil" th:text="${loginname}"></a></h2>
 <ul th:remove="all-but-first">
     <li th:each="klaeff : ${klaeffpage.klaeffs()}">
         <span th:text="${klaeff.userName}">userName</span>
